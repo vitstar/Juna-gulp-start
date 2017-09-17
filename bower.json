@@ -1,0 +1,27 @@
+{
+  "name": "gulp-project",
+  "version": "0.1.0",
+  "dependencies": {
+    "jquery": "^2.2.1",
+    "normalize-css": "^7.0.0"
+  },
+  "overrides": {
+    "owl.carousel": {
+      "main": [
+        "dist/owl.carousel.js",
+        "dist/assets/owl.carousel.css"
+      ],
+      "dependencies": {
+        "jquery": ">= 1.8.3"
+      }
+    },
+    "waypoints": {
+      "main": [
+        "lib/jquery.waypoints.js"
+      ],
+      "dependencies": {
+        "jquery": "~1.11.1"
+      }
+    }
+  }
+}

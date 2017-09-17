@@ -1,0 +1,123 @@
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	outline: none !important;
+}
+input {
+	outline: none !important;
+}
+*::-webkit-input-placeholder {
+	opacity: 1;
+}
+*:-moz-placeholder {
+	opacity: 1;
+}
+*::-moz-placeholder {
+	opacity: 1;
+}
+*:-ms-input-placeholder {
+	opacity: 1;
+}
+*:hover {
+	transition: 0.2s;
+}
+input:focus { 
+	outline: none; 
+}
+a {
+	outline: none;
+	text-decoration: underline;
+	color: $linkcolor;
+
+	&:hover {
+		color: $linkcolorhov;
+	}
+	&:active,
+	&:focus {
+		text-decoration: none;
+		color: $linkcolor;
+	}
+}
+body input:focus:required:invalid,
+body textarea:focus:required:invalid {
+
+}
+body input:required:valid,
+body textarea:required:valid {
+
+}
+html {
+	font-size: 16px;
+}
+body {
+	background: $white;
+	font-size: 16px;
+	min-width: 320px;
+	position: relative;
+	line-height: 1.75;
+	@include Roboto(); 
+	font-weight: normal;
+	font-style: normal;
+	color: $black;
+	overflow-x: hidden;
+	-webkit-font-smoothing: antialiased;
+}
+
+// === Скрытие и показ элементов
+.hidden {
+	display: none !important;
+	visibility: hidden !important;
+}
+.hidden-laptop {
+	@media screen and (max-width: 992px) {
+		display: none !important;
+	}
+}
+.visibility-laptop {
+	@media screen and (min-width: 992px) {
+		display: none !important;
+	}
+}
+.hidden-tablets {
+	@media screen and (max-width: 767px) {
+		display: none !important;
+	}
+}
+.visibility-tablets {
+	@media screen and (min-width: 767px) {
+		display: none !important;
+	}
+}
+
+// === Container
+.container {
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: 15px;
+	padding-right: 15px;
+
+	@media (min-width: 768px) {
+		& {
+			width: 750px;
+		}
+	}
+	@media (min-width: 992px) {
+		& {
+			width: 970px;
+		}
+	}
+	@media (min-width: 1200px) {
+		& {
+			width: $container;
+		}
+	}
+}
+.container-fluid {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}

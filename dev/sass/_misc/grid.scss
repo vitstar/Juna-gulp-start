@@ -1,0 +1,74 @@
+// Обертка clearfix
+.row {
+	@extend %clearfix;
+	margin-right: -15px;
+	margin-left: -15px;
+}
+
+[class^="col-"] {
+	float: left;
+	min-height: 1px;
+}
+	
+// === Сетка через стили
+@mixin col-xs($item) {
+	width:($item / 12) * 100%;
+	float: left;
+	padding:  0px 15px 0px 15px;
+}
+@mixin col-sm($item) {
+	@media (min-width: 768px) {
+		width:($item / 12) * 100%;
+		float: left;
+		padding:  0px 15px 0px 15px;
+	}
+}
+@mixin col-md($item) {
+	@media (min-width: 992px) {
+		width:($item / 12) * 100%;
+		float: left;
+		padding:  0px 15px 0px 15px;
+	}
+}
+@mixin col-lg($item) {
+	@media (min-width: 1200px) {
+		width:($item / 12) * 100%;
+		float: left;
+		padding:  0px 15px 0px 15px;
+	}
+}
+
+// === Сетка через классы
+// Breakpoints
+$breakpoints: (
+	sm: 768px,
+	md: 992px,
+	lg: 1200px,
+);
+@mixin break($size) {  
+	@media (min-width: map-get($breakpoints, $size)) {
+		@content;
+	}
+}
+.col-xs-1   {width:(1 / 12) * 100%}
+.col-xs-2   {width:(2 / 12) * 100%}
+.col-xs-3   {width:(3 / 12) * 100%}
+.col-xs-4   {width:(4 / 12) * 100%}
+.col-xs-5   {width:(5 / 12) * 100%}
+.col-xs-6   {width:(6 / 12) * 100%}
+.col-xs-7   {width:(7 / 12) * 100%}
+.col-xs-8   {width:(8 / 12) * 100%}
+.col-xs-9   {width:(9 / 12) * 100%}
+.col-xs-10  {width:(10 / 12) * 100%}
+.col-xs-11  {width:(11 / 12) * 100%}
+.col-xs-12  {width:(12 / 12) * 100%}
+
+@each $key, $value in $breakpoints {
+	@for $i from 1 through 12 {
+		.col-#{$key}-#{$i} {
+			@include break($key) {
+				width: ($i / 12 ) * 100%;
+			}
+		}
+	}
+}

@@ -1,0 +1,63 @@
+@mixin inlineblock($valign: top){
+	display: inline-block;
+	vertical-align: $valign;
+}
+/* @include inlineblock(middle); */
+
+%clearfix{
+	&:after, &:before {
+		content: "";
+		display: table;
+	}
+
+	&:after {
+		clear: both;
+	}
+}
+/* @extend %clearfix; */
+
+@mixin input-placeholder {
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+}
+/*
+	@include input-placeholder {
+		color: #fff;
+	}
+*/
+
+/* px to rem */
+@function rem($px) {
+	@return $px / 16px + 0rem;
+}
+/* rem(16px) */
+
+/* responsive */
+@mixin desktop {
+	@media screen and (max-width: 1200px) {
+		@content;
+	}
+}
+@mixin laptop {
+	@media screen and (max-width: 992px) {
+		@content;
+	}
+}
+@mixin tablets {
+	@media screen and (max-width: 768px) {
+		@content;
+	}
+}
+@mixin phones {
+	@media screen and (max-width: 480px) {
+		@content;
+	}
+}
+/*
+	@include tablets {
+		width: 100%;
+	}
+*/
