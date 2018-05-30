@@ -30,17 +30,17 @@ gulp.task('css', function() {
             cascade: false
         }))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('dev/ready/css'))
+    .pipe(gulp.dest('dev/_ready/css'))
     .pipe(browserSync.reload({stream: true}));
 });
 
 // Указывает куда сохранять и прописывать пути для установки пакетов через bower
 gulp.task('bower', function () {
-  gulp.src('dev/template/*.html')
+  gulp.src('dev/nunjucks/blocks/*.html')
     .pipe(wiredep({
-      directory : "dev/ready/libs"
+      directory : "dev/_ready/libs"
     }))
-    .pipe(gulp.dest('dev/template'))
+    .pipe(gulp.dest('dev/nunjucks'))
   .pipe(browserSync.reload({stream: true}));
 });
 
@@ -52,8 +52,8 @@ gulp.task('nunjucks', function() {
     ext: '.html'
   }))
   .on('error', notify.onError())
-  .pipe(replace('../ready/libs/', 'libs/'))
-  .pipe(gulp.dest('dev/ready/'))
+  .pipe(replace('../_ready/libs/', 'libs/'))
+  .pipe(gulp.dest('dev/_ready/'))
   .pipe(browserSync.reload({stream: true}));
 });
 
@@ -61,7 +61,7 @@ gulp.task('nunjucks', function() {
 gulp.task('browserSync', function() {
   browserSync({
     server: {
-      baseDir: 'dev/ready'
+      baseDir: 'dev/_ready'
     },
     notify: false
   });
@@ -70,9 +70,8 @@ gulp.task('browserSync', function() {
 // Какие файлы отслеживать
 gulp.task('watch', function() {
   gulp.watch('dev/sass/**/*.scss', ['css']);
-  gulp.watch('dev/template/*.html', ['nunjucks']);
+  gulp.watch('dev/nunjucks/**/*.html', ['nunjucks']);
   gulp.watch('dev/*.html', ['nunjucks']);
-  gulp.watch('bower.json', ['bower']);
 });
 
 gulp.task('default', ['nunjucks','browserSync', 'watch', 'css']);
@@ -87,7 +86,7 @@ gulp.task('clean', function () {
 
 // Сжатие и перемещение картинок
 gulp.task('image:build', function() {
-  gulp.src('dev/ready/img/*')
+  gulp.src('dev/_ready/img/*')
     .pipe(tinify('TBZRe8UbD1QFz3u5nr2wCQHNzz8E9qs5'))
     .on('error', notify.onError())
     .pipe(gulp.dest('public/img'));
@@ -95,12 +94,12 @@ gulp.task('image:build', function() {
 
 // Перемещение шрифтов
 gulp.task('fonts:build', function() {
-  return gulp.src('dev/ready/fonts/**/*')
+  return gulp.src('dev/_ready/fonts/**/*')
     .pipe(gulp.dest('public/fonts'));
 });
 // Формирует проект для продакшена
 gulp.task('build', gulpsync.sync(['clean',['fonts:build','image:build']]), function () {
-  return gulp.src('dev/ready/*.html')
+  return gulp.src('dev/_ready/*.html')
     .pipe(useref())
     .pipe(gulpif('*.js', uglify()))
     .pipe(gulpif('*.css', minifyCss()))
@@ -112,7 +111,7 @@ gulp.task('deploy', function () {
   return gulp.src('public /**/*')
     .pipe(sftp({
       host: '',
-      user: '',
+      user: '', 
       pass: '',
       remotePath: ''
     }));
