@@ -1,18 +1,9 @@
 @font-face {
-    font-family: 'Roboto', sans-serif;
-    src: local('Roboto'), local('Roboto-Regular'), 
-    url('../fonts/Roboto/Roboto.woff2') format('woff2'), 
-    url('../fonts/Roboto/Roboto.woff') format('woff'), 
-    url('../fonts/Roboto/Roboto.ttf') format('truetype');
-    font-weight: 400;
+    font-family: 'Roboto';
+    src: local('Roboto Thin'), local('Roboto-Thin'), 
+    url('../fonts/Roboto/Robotothin.woff2') format('woff2'), 
+    url('../fonts/Roboto/Robotothin.woff') format('woff'), 
+    url('../fonts/Roboto/Robotothin.ttf') format('truetype');
+    font-weight: 100;
     font-style: normal;
 }
-
-@mixin Roboto($style: regular) {
-
-	@if $style == regular {
-		font-family: 'Roboto';
-	}
-}
-
-/* @include roboto(); */

@@ -21,9 +21,6 @@ input {
 *:-ms-input-placeholder {
 	opacity: 1;
 }
-*:hover {
-	transition: 0.2s;
-}
 input:focus { 
 	outline: none; 
 }
@@ -37,7 +34,6 @@ a {
 	}
 	&:active,
 	&:focus {
-		text-decoration: none;
 		color: $linkcolor;
 	}
 }
@@ -57,13 +53,17 @@ body {
 	font-size: 16px;
 	min-width: 320px;
 	position: relative;
-	line-height: 1.75;
-	@include Roboto(); 
+	line-height: 1.4;
+	font-family: $font;
 	font-weight: normal;
 	font-style: normal;
 	color: $black;
 	overflow-x: hidden;
 	-webkit-font-smoothing: antialiased;
+
+	&.no-scroll {
+		overflow: hidden;
+	}
 }
 
 // === Скрытие и показ элементов
@@ -115,6 +115,7 @@ body {
 		}
 	}
 }
+
 .container-fluid {
 	padding-right: 15px;
 	padding-left: 15px;
