@@ -2,9 +2,7 @@ var gulp           = require('gulp'),
     sass           = require('gulp-sass'),
     browserSync    = require('browser-sync'),
     useref         = require('gulp-useref'),
-    uglify         = require('gulp-uglify'),
     gulpif         = require('gulp-if'),
-    minifyCss      = require('gulp-minify-css'),
     clean          = require('gulp-clean'),
     sourcemaps     = require('gulp-sourcemaps'),
     sftp           = require('gulp-sftp'),
@@ -102,8 +100,6 @@ gulp.task('fonts:build', function() {
 gulp.task('build', gulpsync.sync(['clean',['fonts:build','image:build']]), function () {
   return gulp.src('dev/ready/*.html')
     .pipe(useref())
-    .pipe(gulpif('*.js', uglify()))
-    .pipe(gulpif('*.css', minifyCss()))
     .pipe(gulp.dest('public'));
 });
 
